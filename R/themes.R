@@ -282,7 +282,7 @@ unregister_themes = function(){
     }
     
     # Stub the 'utils::menu' function within 'city_themes' to use 'mock_menu'
-    mockery::stub(rcityviews::city_themes, 'utils::menu', mock_menu)
+    mockery::stub(rcityviews:::city_themes, 'utils::menu', mock_menu)
     
     # Ensure that the stub is removed after execution to avoid side effects
     # on.exit({
@@ -290,7 +290,7 @@ unregister_themes = function(){
     # }, add = TRUE)
     
     # Call the original 'city_themes' function with provided arguments
-    suppressMessages(rcityviews::city_themes(name, theme = theme, force = force, remove = remove)) 
+    suppressMessages(rcityviews:::city_themes(name, theme = theme, force = force, remove = remove)) 
   }
   
   
@@ -298,7 +298,7 @@ unregister_themes = function(){
   unregister = function(name){
     theme = .themeOptions(name)
     
-    if(!is.null(rcityviews::city_themes(name = name))){
+    if(!is.null(rcityviews:::city_themes(name = name))){
       # Add the custom theme to the cache without prompting
       city_themes_auto_yes(name = name, theme = theme, force = T)
     }else{

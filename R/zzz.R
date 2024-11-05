@@ -23,7 +23,7 @@
     }
     
     # Stub the 'utils::menu' function within 'city_themes' to use 'mock_menu'
-    mockery::stub(rcityviews::city_themes, 'utils::menu', mock_menu)
+    mockery::stub(rcityviews:::city_themes, 'utils::menu', mock_menu)
     
     # Ensure that the stub is removed after execution to avoid side effects
     # on.exit({
@@ -31,7 +31,7 @@
     # }, add = TRUE)
     
     # Call the original 'city_themes' function with provided arguments
-    rcityviews::city_themes(name, theme = theme, force = force, remove = remove)
+    rcityviews:::city_themes(name, theme = theme, force = force, remove = remove)
   }
   
   
