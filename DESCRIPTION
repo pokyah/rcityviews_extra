@@ -3,9 +3,10 @@ Title: Extra templates for rcityviews <https://koenderks.github.io/rcityviews/> 
 Version: 0.0.1
 Date: 2024-11-04
 Authors@R:
-    person(given = "Goossens",
-           family = "Thomas",
-           role = c("aut", "cre"))
+    person(given = "Thomas",
+           family = "Goossens",
+           role = c("aut", "cre"),
+           email = "hello.pokyah@gmail.com")
 Description: Extra templates for rcityviews <https://koenderks.github.io/rcityviews/> implemented from prettymaps <https://github.com/marceloprates/prettymaps/>.
     This package is not affiliated with rcityviews nor prettymaps.
 Depends:
