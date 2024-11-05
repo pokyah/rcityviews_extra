@@ -264,11 +264,38 @@
 
 # Wrapper function for city_themes that automatically selects "Yes"
 auto_yes_city_themes <- function(name, theme = NULL, force = FALSE, remove = FALSE) {
-  testthat::with_mocked_bindings(
-    "utils::menu" = function(...) 1,
-    city_themes(name, theme, force, remove)
-  )
+  # Step 1: Save the original 'menu' function
+  original_menu <- utils::menu
+  
+  # Step 2: Define a mock 'menu' function that always returns 1 ("Yes")
+  mock_menu <- function(...) 1
+  
+  # Access the 'utils' namespace
+  utils_ns <- asNamespace("utils")
+  
+  # Step 3: Unlock the binding for 'menu' in the 'utils' namespace
+  unlock_binding_success <- try(unlockBinding("menu", utils_ns), silent = TRUE)
+  
+  if (inherits(unlock_binding_success, "try-error")) {
+    stop("Unable to unlock binding for 'menu' in the 'utils' namespace.", call. = FALSE)
+  }
+  
+  # Assign the mock 'menu' function
+  assign("menu", mock_menu, envir = utils_ns)
+  
+  # Ensure that the original 'menu' is restored, even if an error occurs
+  on.exit({
+    assign("menu", original_menu, envir = utils_ns)
+    lockBinding("menu", utils_ns)
+  }, add = TRUE)
+  
+  # Step 4: Call the original 'city_themes' function with provided arguments
+  result <- city_themes(name, theme, force, remove)
+  
+  # Return the result
+  return(result)
 }
+
 
 
 
