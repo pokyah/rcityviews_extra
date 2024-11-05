@@ -5,13 +5,19 @@
 #' @format A character vector of theme names.
 #' @export
 .themes = c(
+  "pokyah.church",
   "prettymaps.default",
   "prettymaps.macao",
   "prettymaps.minimal",
   "prettymaps.tijuca",
   "prettymaps.oslo",
   "prettymaps.tokyo",
-  "prettymaps.paris")
+  "prettymaps.paris",
+  "pokyah.purple",
+  "pokyah.dark",
+  "pokyah.light",
+  "pokyah.greeny"
+  )
 
 #' Get Theme Options
 #'
@@ -108,7 +114,7 @@
                      "waterlines" = "#ACC8DA"
                    ),
                    # mythemes
-                   "purple" = list(
+                   "pokyah.purple" = list(
                      "background" = "#522258",
                      "water" = "#D95F59",
                      "landuse" = c("#522258", "#522258", "#522258"),
@@ -119,7 +125,7 @@
                      "text" = "#D95F59",
                      "waterlines" = "#D95F59"
                    ),
-                   "dark" = list(
+                   "pokyah.dark" = list(
                      "background" = "#0A1931",
                      "water" = "#185ADB",
                      "landuse" = c("#0A1931", "#0A1931", "#0A1931"),
@@ -130,7 +136,7 @@
                      "text" = "#FFC947",
                      "waterlines" = "#185ADB"
                    ),
-                   "light" = list(
+                   "pokyah.light" = list(
                      "background" = "#ffffff",
                      "water" = "#cedce9",
                      "landuse" = c("#ffffff", "#ffffff", "#ffffff"),
@@ -141,7 +147,7 @@
                      "text" = "#4b4b4b",
                      "waterlines" = "#cedce9"
                    ),
-                   "greeny" = list(
+                   "pokyah.greeny" = list(
                      "background" = "#006769",
                      "water" = "#006769",
                      "landuse" = c("#40A578", "#9DDE8B", "#E6FF94"),
@@ -152,8 +158,8 @@
                      "text" = "#9DDE8B",
                      "waterlines" = "#006769"
                    ),
-                   "church" = list(
-                     "background" = "#000000",    # Bright gold, reminiscent of sunlight through glass
+                   "pokyah.church" = list(
+                     "background" = "#FFD700",    # Bright gold, reminiscent of sunlight through glass
                      "water" = "#1F75FE",         # Vivid blue for strong water reflections
                      "landuse" = c("#E32636",     # Crimson red for dramatic contrasts
                                    "#228B22",     # Forest green for lush land areas
@@ -164,7 +170,7 @@
                      "buildings" = c("#FF6347",   # Tomato red for a vivid building color
                                      "#FF69B4",   # Hot pink for bold accents
                                      "#FFA500"),  # Orange for additional vibrancy in structures
-                     "text" = "#FFD700",          # Black text for strong readability over vivid colors
+                     "text" = "#000000",          # Black text for strong readability over vivid colors
                      "waterlines" = "#00CED1"     # Bright turquoise for waterline details
                    )
   )
@@ -315,12 +321,23 @@ manage_themes = function(remove = F){
   # define the theme registering function
   manage = function(name){
     theme = .themeOptions(name)
-    if(!is.null(rcityviews:::city_themes(name = name))){
-      # Add the custom theme to the cache without prompting
-      auto_yes_city_themes(name = name, theme = theme, force = T, remove = remove)
+    if(isFALSE(remove)){
+      if(is.null(rcityviews:::city_themes(name = name))){
+        # Add the custom theme to the cache without prompting
+        auto_yes_city_themes(name = name, theme = theme, force = T, remove = remove)
+      }else{
+        message("Theme ", name, " already registered")
+      }
     }else{
-      message("Theme ", name, " already unregistered")
+      if(!is.null(rcityviews:::city_themes(name = name))){
+        # remove the custom theme to the cache without prompting
+        auto_yes_city_themes(name = name, theme = theme, force = T, remove = remove)
+      }else{
+        message("Theme ", name, " already unregistered")
+      }
     }
+    
+
 
   }
   

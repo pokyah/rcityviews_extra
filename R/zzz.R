@@ -16,7 +16,7 @@
 .onLoad <- function(libname, pkgname) {
 
   # define the theme registering function
-  message("Use manage_theme() to install themes")
+  message("Use manage_themes() to install themes")
   
 }
 
