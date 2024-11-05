@@ -1,0 +1,170 @@
+---
+title: "Using Arbitrary Location Names with rcityviews"
+output: rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{Using Arbitrary Location Names with rcityviews}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+The `rcityviews` package now allows users to generate city views by providing arbitrary location names (e.g., "Hellebecq, Belgium") in addition to predefined cities. This integration leverages the `tidygeocoder` package to convert location names into geographic coordinates seamlessly.
+
+## Examples
+
+### 1. Generating a City View by Arbitrary Location Name
+
+
+```{r}
+name = "Villa de Mazo Canarias"
+country = "Spain"
+theme = "dark"
+zoom = 3.5
+city = geocode(location = paste0(name, " ", country))
+
+city <- new_city(
+  name = name,
+  country = "",
+  lat = city[1, 3],
+  long = city[1, 4]
+)
+
+map = cityview(
+  name = city,
+  license = F,
+  theme = theme,
+  timeout = 1000,
+  legend = F,
+  zoom = zoom,
+  border = "circle",cache = T
+)
+
+filename = paste0(name, "_", country, "_", "zoom_", zoom)
+
+
+ggplot2::ggsave(filename = paste0(filename, ".png"), plot = map, height = 500, width = 500, units = "mm", dpi = 96)
+
+```
+```{r}
+
+   names = c("Parvis de Saint-Gilles", "Marolles Bruxelles", "De Wand Laeken", "Stockel Woluwe")
+
+   names = c("Altitude Cent \n 1190 Forest", "Terdelt Schaerbeek")
+   
+  
+   names = c("Moorsel Tervueren")
+   names = list(
+     #location2 = c("De Wand Laeken", "Belgique"),
+     #location1 = c("Altitude Cent \n 1190 Forest", "France"),
+     location1 = c("Bruxelles", "Belgique")
+     )
+  
+  themes = c("vintage", "modern", "bright", "original", "delftware", "comic", "rouge", "original", "midearth", "batik", "vice", "default", "macao", "minimal", "tijuca", "oslo", "tokyo", "paris", "dark", "light", "greeny", "church")
+
+
+  zoom = 1
+  
+  
+  build_plot = function(name, themes, zoom, shape = "circle"){
+
+    get_map = function(theme){
+      
+      name = new_city(name = name[1], country = name[2])
+      
+      namesplit = strsplit(name$name, split = " ")
+      
+      name$name = paste0(namesplit[[1]][1:2], collapse = " ")
+      name$country = namesplit[[1]][3]
+      
+      map = cityview(
+        
+        name = name,
+        license = F,
+        theme = theme,
+        timeout = 1000,
+        legend = F,
+        zoom = zoom,
+        border = shape,
+        cache = T
+      )
+      
+      filename = paste0(paste0(name, collapse = " "), "_", theme, "_z", zoom, "_" , shape)
+    
+      ggplot2::ggsave(
+        filename = paste0(filename, ".png"),
+        plot = map, height = 500, width = 500, units = "mm", dpi = 96)
+    }
+  
+    lapply(themes, get_map)
+  
+  }
+  
+  
+  lapply(names, build_plot, themes, zoom) 
+
+
+```
+
+```{r}
+
+   names = c("Parvis de Saint-Gilles", "Marolles Bruxelles", "De Wand Laeken", "Stockel Woluwe")
+
+   names = c("Altitude Cent Forest", "Terdelt Schaerbeek")
+   
+   names = c("Silly Belgique")
+   names = c("Moorsel Tervueren")
+   names = c("Jette Bruxelles")
+   
+  
+  themes = c("dark", "light", "original", "tijuca", "rouge","bright")
+  themes = c("vintage", "original")
+  zoom = 3.5
+  
+  
+  build_plot = function(name, themes, zoom, country = "Belgium", shape = "circle"){
+    
+    city = geocode(location = paste0(name, " ", country))
+    
+    city <- new_city(
+      name = name,
+      country = "",
+      lat = city[1, 3],
+      long = city[1, 4]
+    )
+    
+    
+    get_map = function(theme){
+      
+      map = cityview(
+        name = city,
+        license = F,
+        theme = theme,
+        timeout = 1000,
+        legend = F,
+        zoom = zoom,
+        border = shape,
+        cache = T
+      )
+    
+      filename = paste0(name, "_", country, "_", theme, "_z", zoom, "_" , shape)
+    
+      ggplot2::ggsave(
+        filename = paste0(filename, ".png"),
+        plot = map, height = 500, width = 500, units = "mm", dpi = 96)
+    }
+  
+    lapply(themes, get_map)
+  
+  }
+  
+  
+  lapply(names, build_plot, themes, zoom) 
+
+
+```
+
+
+
+
+

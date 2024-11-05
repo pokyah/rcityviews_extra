@@ -1,0 +1,27 @@
+Package: rcityviews_extra
+Title: Extra templates for rcityviews <https://koenderks.github.io/rcityviews/> implemented from prettymaps <https://github.com/marceloprates/prettymaps/>
+Version: 0.0.1
+Date: 2024-11-04
+Authors@R:
+    person(given = "Goossens",
+           family = "Thomas",
+           role = c("aut", "cre"))
+Description: Extra templates for rcityviews <https://koenderks.github.io/rcityviews/> implemented from prettymaps <https://github.com/marceloprates/prettymaps/>.
+    This package is not affiliated with rcityviews nor prettymaps.
+Depends:
+    R (>= 4.1.0)
+Imports:
+    mockery,
+    rcityviews,
+    utils
+Suggests:
+    rmarkdown,
+    testthat
+Remotes: koenderks/rcityviews
+URL: https://github.com/pokyah/rcityviews_extra
+BugReports: https://github.com/pokyah/rcityviews_extra/issues
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Language: en-US
+RoxygenNote: 7.3.2
