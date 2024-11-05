@@ -290,7 +290,7 @@ auto_yes_city_themes <- function(name, theme = NULL, force = FALSE, remove = FAL
   }, add = TRUE)
   
   # Step 4: Call the original 'city_themes' function with provided arguments
-  result <- city_themes(name, theme, force, remove)
+  result <- rcityviews::city_themes(name, theme, force, remove)
   
   # Return the result
   return(result)
