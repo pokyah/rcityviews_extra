@@ -290,7 +290,7 @@ manage_themes = function(remove = F){
     theme = .themeOptions(name)
     if(!is.null(rcityviews:::city_themes(name = name))){
       # Add the custom theme to the cache without prompting
-      city_themes_auto_yes(name = name, theme = theme, force = T, remove = remove)
+      auto_yes_city_themes(name = name, theme = theme, force = T, remove = remove)
     }else{
       message("Theme ", name, " already unregistered")
     }
