@@ -1,6 +1,6 @@
 # rcityviews_extra
 
-extra temapltes for rcityviews package inspired from python [prettymaps](https://github.com/marceloprates/prettymaps/)
+extra themes for rcityviews package inspired from python [prettymaps](https://github.com/marceloprates/prettymaps/)
 
 # installation
 
