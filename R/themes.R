@@ -6,6 +6,7 @@ library(jsonlite)
   theme_file <- system.file("themes.json", package = pkgname)
   if (file.exists(theme_file)) {
     theme_data <<- fromJSON(theme_file)
+    .themes <<- names(theme_data$themes)  # Initialize .themes with the names of themes
   } else {
     stop("Theme configuration file not found.")
   }
