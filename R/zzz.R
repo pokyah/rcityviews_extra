@@ -14,7 +14,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .onLoad <- function(libname, pkgname) {
-  font_dir <- system.file("fonts", package = pkgname)  # Find the fonts directory
+  font_dir <- system.file("fonts", package = "rcityviewsExtra")  # Find the fonts directory
+  
+  sysfonts::font_add_google("Caveat")
+  sysfonts::font_add_google("Imbue")
+  sysfonts::font_add_google("Damion")
+  sysfonts::font_add_google("Oswald")
+  sysfonts::font_add_google("Rampart One")
+  sysfonts::font_add_google("Fredericka the Great")
+  sysfonts::font_add_google("Dancing Script")
+  sysfonts::font_add_google("Walter Turncoat")
+
   if (font_dir != "") {
     # List all .ttf files in the font directory
     ttf_files <- list.files(font_dir, pattern = "\\.ttf$", full.names = TRUE)
