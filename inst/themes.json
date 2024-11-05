@@ -163,7 +163,7 @@
         "waterlines": "#ACC8DA"
       },
       "font": {
-        "family": "Ubuntu Mono",
+        "family": "PermanentMarker-Regular",
         "face": "plain",
         "scale": 1
       }
@@ -181,7 +181,7 @@
         "waterlines": "#D95F59"
       },
       "font": {
-        "family": "Ubuntu Mono",
+        "family": "PermanentMarker-Regular",
         "face": "plain",
         "scale": 1
       }
@@ -199,7 +199,7 @@
         "waterlines": "#185ADB"
       },
       "font": {
-        "family": "Ubuntu Mono",
+        "family": "PermanentMarker-Regular",
         "face": "plain",
         "scale": 1
       }
@@ -217,7 +217,7 @@
         "waterlines": "#CEDCE9"
       },
       "font": {
-        "family": "Ubuntu Mono",
+        "family": "PermanentMarker-Regular",
         "face": "plain",
         "scale": 1
       }
