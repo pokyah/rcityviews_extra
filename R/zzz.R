@@ -14,42 +14,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .onLoad <- function(libname, pkgname) {
-  
-  #wrapper that say yes to cityviews::citythem function
-  city_themes_auto_yes <- function(name, theme = NULL, force = FALSE, remove = FALSE) {
-    # Define a mock 'menu' function that always returns 1 (Yes)
-    mock_menu <- function(choices, title, ...) {
-      return(1)  # Automatically select "Yes"
-    }
-    
-    # Stub the 'utils::menu' function within 'city_themes' to use 'mock_menu'
-    mockery::stub(rcityviews:::city_themes, 'utils::menu', mock_menu)
-    
-    # Ensure that the stub is removed after execution to avoid side effects
-    # on.exit({
-    #   mockery::unstub(city_themes)
-    # }, add = TRUE)
-    
-    # Call the original 'city_themes' function with provided arguments
-    rcityviews:::city_themes(name, theme = theme, force = force, remove = remove)
-  }
-  
-  
+
   # define the theme registering function
-  register = function(name){
-    theme = .themeOptions(name)
-    
-    # Add the custom theme to the cache without prompting
-    city_themes_auto_yes(name = name, theme = theme, force = T)
-  }
+  message("Use managet_theme() to install themes")
   
-  themes <- .themes
-  lapply(themes, register)
-  
-  
-  # # Retreive the theme from the persistent cache (e.g., in a future R session)
-  # city_themes(name = "blackyellow")
-  # # Remove the theme from the persistent cache
-  # city_themes(name = "blackyellow", remove = TRUE)
 }
 

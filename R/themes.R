@@ -262,6 +262,17 @@
   return(themeOptions)
 }
 
+# Wrapper function for city_themes that automatically selects "Yes"
+auto_yes_city_themes <- function(name, theme = NULL, force = FALSE, remove = FALSE) {
+  testthat::with_mocked_bindings(
+    "utils::menu" = function(...) 1,
+    city_themes(name, theme, force, remove)
+  )
+}
+
+
+
+
 #' Unregister All Themes
 #'
 #' Unregisters all themes from `rcityviews_extra` by iterating over each theme
@@ -272,35 +283,14 @@
 #'
 #' @return A message indicating that all themes have been unregistered.
 #' @export
-unregister_themes = function(){
-  
-  #wrapper that say yes to cityviews::citytheme function
-  city_themes_auto_yes <- function(name, theme = NULL, force = FALSE, remove = TRUE) {
-    # Define a mock 'menu' function that always returns 1 (Yes)
-    mock_menu <- function(choices, title, ...) {
-      return(1)  # Automatically select "Yes"
-    }
-    
-    # Stub the 'utils::menu' function within 'city_themes' to use 'mock_menu'
-    mockery::stub(rcityviews:::city_themes, 'utils::menu', mock_menu)
-    
-    # Ensure that the stub is removed after execution to avoid side effects
-    # on.exit({
-    #   mockery::unstub(city_themes)
-    # }, add = TRUE)
-    
-    # Call the original 'city_themes' function with provided arguments
-    suppressMessages(rcityviews:::city_themes(name, theme = theme, force = force, remove = remove)) 
-  }
-  
+manage_themes = function(remove = F){
   
   # define the theme registering function
-  unregister = function(name){
+  manage = function(name){
     theme = .themeOptions(name)
-    
     if(!is.null(rcityviews:::city_themes(name = name))){
       # Add the custom theme to the cache without prompting
-      city_themes_auto_yes(name = name, theme = theme, force = T)
+      city_themes_auto_yes(name = name, theme = theme, force = T, remove = remove)
     }else{
       message("Theme ", name, " already unregistered")
     }
@@ -308,9 +298,8 @@ unregister_themes = function(){
   }
   
   themes <- .themes
-  lapply(themes, unregister)
-  
-  message("Unregistered all themes from rcityviews_extra")
+  lapply(themes, manage)
+
 }
 
 #' List Available Themes

@@ -3,4 +3,4 @@
 export(.themeOptions)
 export(.themes)
 export(list_themes)
-export(unregister_themes)
+export(manage_themes)
