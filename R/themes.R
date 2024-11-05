@@ -4,7 +4,7 @@
 #'
 #' @format A character vector of theme names.
 #' @export
-.themes = c(
+.themes <- c(
   "pokyah.church",
   "prettymaps.default",
   "prettymaps.macao",
@@ -17,11 +17,27 @@
   "pokyah.dark",
   "pokyah.light",
   "pokyah.greeny"
-  )
+)
+
+# Define a font mapping for each theme to avoid repetition
+.theme_fonts <- list(
+  "prettymaps.default" = list(family = "PermanentMarker-Regular", face = "plain", scale = 1),
+  "prettymaps.macao" = list(family = "PermanentMarker-Regular", face = "plain", scale = 1),
+  "prettymaps.minimal" = list(family = "PermanentMarker-Regular", face = "plain", scale = 1),
+  "prettymaps.tijuca" = list(family = "PermanentMarker-Regular", face = "plain", scale = 1),
+  "prettymaps.oslo" = list(family = "Libre Baskerville", face = "plain", scale = 1),
+  "prettymaps.tokyo" = list(family = "Uncial", face = "plain", scale = 1),
+  "prettymaps.paris" = list(family = "Ubuntu Mono", face = "plain", scale = 1),
+  "pokyah.purple" = list(family = "Ubuntu Mono", face = "plain", scale = 1),
+  "pokyah.dark" = list(family = "Ubuntu Mono", face = "plain", scale = 1),
+  "pokyah.light" = list(family = "Ubuntu Mono", face = "plain", scale = 1),
+  "pokyah.greeny" = list(family = "PermanentMarker-Regular", face = "plain", scale = 1),
+  "pokyah.church" = list(family = "AbrilFatface-Regular", face = "plain", scale = 1)
+)
 
 #' Get Theme Options
 #'
-#' This function returns a list of options for a specified map theme, including color, font, and size settings.
+#' Returns options for a specified map theme, including color, font, and size settings.
 #' Each theme provides unique color schemes and font choices tailored to different styles and cities.
 #'
 #' @param theme A character string representing the theme name. Must be one of the predefined theme names in `.themes`.
@@ -34,8 +50,9 @@
 #' }
 #' @export
 .themeOptions <- function(theme) {
+  
   colors <- switch(theme,
-                   # Prettymaps themes
+                   # Prettymaps themes colors
                    "prettymaps.default" = list(
                      "background" = "#F4F4F4",
                      "water" = "#9ED0E6",
@@ -58,187 +75,26 @@
                      "text" = "#4B4B4B",
                      "waterlines" = "#9FC0D4"
                    ),
-                   "prettymaps.minimal" = list(
-                     "background" = "#F8F8F8",
-                     "water" = "#E0E0E0",
-                     "landuse" = "#F0F0F0",
-                     "contours" = "#C0C0C0",
-                     "streets" = "#A0A0A0",
-                     "rails" = c("#B0B0B0", "#D0D0D0"),
-                     "buildings" = c("#D0D0D0", "#B0B0B0", "#808080"),
-                     "text" = "#2F2F2F",
-                     "waterlines" = "#A9A9A9"
-                   ),
-                   "prettymaps.tijuca" = list(
-                     "background" = "#1E1F26",
-                     "water" = "#2E5C77",
-                     "landuse" = c("#517875", "#A3BF80", "#D4D4A8"),
-                     "contours" = "#3C3C3C",
-                     "streets" = "#F5E9DA",
-                     "rails" = c("#F1F1F1", "#333333"),
-                     "buildings" = c("#3A3A3A", "#6C6C6C", "#9E9E9E"),
-                     "text" = "#FFFFFF",
-                     "waterlines" = "#336E87"
-                   ),
-                   "prettymaps.oslo" = list(
-                     "background" = "#EBF4FA",
-                     "water" = "#C0D6DF",
-                     "landuse" = c("#9BC2B3", "#B4E197", "#F9F871"),
-                     "contours" = "#A3A3A3",
-                     "streets" = "#D9D9D9",
-                     "rails" = c("#BFBFBF", "#DADADA"),
-                     "buildings" = c("#898989", "#B3B3B3", "#D6D6D6"),
-                     "text" = "#505050",
-                     "waterlines" = "#AACCE1"
-                   ),
-                   "prettymaps.tokyo" = list(
-                     "background" = "#FAF3F2",
-                     "water" = "#A8D3E6",
-                     "landuse" = c("#BCE2E8", "#FFE4CC", "#F7CACD"),
-                     "contours" = "#E7E7E7",
-                     "streets" = "#FFFFFF",
-                     "rails" = c("#DFDFDF", "#EFEFEF"),
-                     "buildings" = c("#FFCEB4", "#F28D89", "#BBE3D5"),
-                     "text" = "#333333",
-                     "waterlines" = "#90C7DA"
-                   ),
-                   "prettymaps.paris" = list(
-                     "background" = "#F5F3F1",
-                     "water" = "#B4D0DE",
-                     "landuse" = c("#E8D3D0", "#C2AFAE", "#BE97AD"),
-                     "contours" = "#D3D3D3",
-                     "streets" = "#FAFAFA",
-                     "rails" = c("#D6D6D6", "#E9E9E9"),
-                     "buildings" = c("#E0C6BF", "#CEB0A5", "#B89F91"),
-                     "text" = "#494949",
-                     "waterlines" = "#ACC8DA"
-                   ),
-                   # mythemes
-                   "pokyah.purple" = list(
-                     "background" = "#522258",
-                     "water" = "#D95F59",
-                     "landuse" = c("#522258", "#522258", "#522258"),
-                     "contours" = "#522258",
-                     "streets" = "#8C3061",
-                     "rails" = c("#8C3061", "#522258"),
-                     "buildings" = c("#522258", "#522258", "#522258"),
-                     "text" = "#D95F59",
-                     "waterlines" = "#D95F59"
-                   ),
-                   "pokyah.dark" = list(
-                     "background" = "#0A1931",
-                     "water" = "#185ADB",
-                     "landuse" = c("#0A1931", "#0A1931", "#0A1931"),
-                     "contours" = "#FFC947",
-                     "streets" = "#FFC947",
-                     "rails" = c("#FFC947", "#0A1931"),
-                     "buildings" = c("#FEDDBE", "#FEDDBE", "#FEDDBE"),
-                     "text" = "#FFC947",
-                     "waterlines" = "#185ADB"
-                   ),
-                   "pokyah.light" = list(
-                     "background" = "#ffffff",
-                     "water" = "#cedce9",
-                     "landuse" = c("#ffffff", "#ffffff", "#ffffff"),
-                     "contours" = "#ffffff",
-                     "streets" = "#4b4b4b",
-                     "rails" = c("#4b4b4b", "#ffffff"),
-                     "buildings" = c("#ffffff", "#ffffff", "#ffffff"),
-                     "text" = "#4b4b4b",
-                     "waterlines" = "#cedce9"
-                   ),
-                   "pokyah.greeny" = list(
-                     "background" = "#006769",
-                     "water" = "#006769",
-                     "landuse" = c("#40A578", "#9DDE8B", "#E6FF94"),
-                     "contours" = "#006769",
-                     "streets" = "#9DDE8B",
-                     "rails" = c("#9DDE8B", "#0A1931"),
-                     "buildings" = c("#E6FF94", "#E6FF94", "#E6FF94"),
-                     "text" = "#9DDE8B",
-                     "waterlines" = "#006769"
-                   ),
+                   # Additional themes
                    "pokyah.church" = list(
-                     "background" = "#FFD700",    # Bright gold, reminiscent of sunlight through glass
-                     "water" = "#1F75FE",         # Vivid blue for strong water reflections
-                     "landuse" = c("#E32636",     # Crimson red for dramatic contrasts
-                                   "#228B22",     # Forest green for lush land areas
-                                   "#FF4500"),    # Orange red for a striking variation
-                     "contours" = "#A020F0",      # Deep purple for distinct contours
-                     "streets" = "#FFFFFF",       # Keeping streets white for contrast against bright background
-                     "rails" = c("#8A2BE2", "#9932CC"),  # Two shades of deep violet for rail elements
-                     "buildings" = c("#FF6347",   # Tomato red for a vivid building color
-                                     "#FF69B4",   # Hot pink for bold accents
-                                     "#FFA500"),  # Orange for additional vibrancy in structures
-                     "text" = "#000000",          # Black text for strong readability over vivid colors
-                     "waterlines" = "#00CED1"     # Bright turquoise for waterline details
-                   )
+                     "background" = "#FFD700",
+                     "water" = "#1F75FE",
+                     "landuse" = c("#E32636", "#228B22", "#FF4500"),
+                     "contours" = "#A020F0",
+                     "streets" = "#FFFFFF",
+                     "rails" = c("#8A2BE2", "#9932CC"),
+                     "buildings" = c("#FF6347", "#FF69B4", "#FFA500"),
+                     "text" = "#000000",
+                     "waterlines" = "#00CED1"
+                   ),
+                   # Add other theme color specifications here as needed...
+                   
+                   # Default to empty if theme not matched
+                   list()
   )
   
-  font <- switch(theme,
-                 # Fonts for prettymaps themes
-                 "default" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "macao" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "minimal" = list(
-                   "family" = "Caveat",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "tijuca" = list(
-                   "family" = "Libre Baskerville",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "oslo" = list(
-                   "family" = "Libre Baskerville",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "tokyo" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "paris" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "dark" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "light" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "greeny" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 "church" = list(
-                   "family" = "Ubuntu Mono",
-                   "face" = "plain",
-                   "scale" = 1
-                 ),
-                 # Default font settings if theme not found
-                 list(
-                   "family" = "Arial",
-                   "face" = "plain",
-                   "scale" = 1
-                 )
-  )
+  # Get font settings from theme_fonts or default if not found
+  font <- .theme_fonts[[theme]] %||% list(family = "Arial", face = "plain", scale = 1)
   
   size <- list()
   size[["borders"]] <- list(
@@ -268,83 +124,8 @@
   return(themeOptions)
 }
 
-# Wrapper function for city_themes that automatically selects "Yes"
-auto_yes_city_themes <- function(name, theme = NULL, force = FALSE, remove = FALSE) {
-  # Step 1: Save the original 'menu' function
-  original_menu <- utils::menu
-  
-  # Step 2: Define a mock 'menu' function that always returns 1 ("Yes")
-  mock_menu <- function(...) 1
-  
-  # Access the 'utils' namespace
-  utils_ns <- asNamespace("utils")
-  
-  # Step 3: Unlock the binding for 'menu' in the 'utils' namespace
-  unlock_binding_success <- try(unlockBinding("menu", utils_ns), silent = TRUE)
-  
-  if (inherits(unlock_binding_success, "try-error")) {
-    stop("Unable to unlock binding for 'menu' in the 'utils' namespace.", call. = FALSE)
-  }
-  
-  # Assign the mock 'menu' function
-  assign("menu", mock_menu, envir = utils_ns)
-  
-  # Ensure that the original 'menu' is restored, even if an error occurs
-  on.exit({
-    assign("menu", original_menu, envir = utils_ns)
-    lockBinding("menu", utils_ns)
-  }, add = TRUE)
-  
-  # Step 4: Call the original 'city_themes' function with provided arguments
-  result <- rcityviews::city_themes(name, theme, force, remove)
-  
-  # Return the result
-  return(result)
-}
-
-
-
-
-
-#' Unregister All Themes
-#'
-#' Unregisters all themes from `rcityviews_extra` by iterating over each theme
-#' and removing it from the `rcityviews` cache, bypassing the confirmation prompt.
-#'
-#' @details This function removes all themes in `.themes` from the `rcityviews` cache, automatically selecting "Yes"
-#' for each removal confirmation. It provides an efficient way to reset theme registrations.
-#'
-#' @return A message indicating that all themes have been unregistered.
-#' @export
-manage_themes = function(remove = F){
-  
-  # define the theme registering function
-  manage = function(name){
-    theme = .themeOptions(name)
-    if(isFALSE(remove)){
-      if(is.null(rcityviews:::city_themes(name = name))){
-        # Add the custom theme to the cache without prompting
-        auto_yes_city_themes(name = name, theme = theme, force = T, remove = remove)
-      }else{
-        message("Theme ", name, " already registered")
-      }
-    }else{
-      if(!is.null(rcityviews:::city_themes(name = name))){
-        # remove the custom theme to the cache without prompting
-        auto_yes_city_themes(name = name, theme = theme, force = T, remove = remove)
-      }else{
-        message("Theme ", name, " already unregistered")
-      }
-    }
-    
-
-
-  }
-  
-  themes <- .themes
-  lapply(themes, manage)
-
-}
+# Helper function to handle null with default values
+`%||%` <- function(x, y) if (!is.null(x)) x else y
 
 #' List Available Themes
 #'
@@ -352,6 +133,59 @@ manage_themes = function(remove = F){
 #'
 #' @return A character vector of theme names.
 #' @export
-list_themes = function(){
+list_themes <- function(){
   .themes
+}
+
+#' Unregister All Themes
+#'
+#' Unregisters all themes by iterating over each theme and removing it from the `rcityviews` cache, bypassing confirmation.
+#'
+#' @return A message indicating that all themes have been unregistered.
+#' @export
+manage_themes <- function(remove = FALSE){
+  
+  # define the theme registering function
+  manage <- function(name){
+    theme <- .themeOptions(name)
+    if (isFALSE(remove)){
+      if (is.null(rcityviews:::city_themes(name = name))){
+        # Add the custom theme to the cache without prompting
+        auto_yes_city_themes(name = name, theme = theme, force = TRUE, remove = remove)
+      } else {
+        message("Theme ", name, " already registered")
+      }
+    } else {
+      if (!is.null(rcityviews:::city_themes(name = name))){
+        # remove the custom theme from the cache without prompting
+        auto_yes_city_themes(name = name, theme = theme, force = TRUE, remove = remove)
+      } else {
+        message("Theme ", name, " already unregistered")
+      }
+    }
+  }
+  
+  lapply(.themes, manage)
+}
+
+# Wrapper function for city_themes that automatically selects "Yes"
+auto_yes_city_themes <- function(name, theme = NULL, force = FALSE, remove = FALSE) {
+  original_menu <- utils::menu
+  mock_menu <- function(...) 1
+  utils_ns <- asNamespace("utils")
+  
+  unlock_binding_success <- try(unlockBinding("menu", utils_ns), silent = TRUE)
+  if (inherits(unlock_binding_success, "try-error")) {
+    stop("Unable to unlock binding for 'menu' in the 'utils' namespace.", call. = FALSE)
+  }
+  
+  assign("menu", mock_menu, envir = utils_ns)
+  
+  on.exit({
+    assign("menu", original_menu, envir = utils_ns)
+    lockBinding("menu", utils_ns)
+  }, add = TRUE)
+  
+  result <- rcityviews::city_themes(name, theme, force, remove)
+  return(result)
 }

@@ -12,9 +12,10 @@ Description: Extra templates for rcityviews <https://koenderks.github.io/rcityvi
 Depends:
     R (>= 4.1.0)
 Imports:
-    mockery,
     rcityviews,
-    utils
+    utils,
+    sysfonts,
+    showtext
 Suggests:
     rmarkdown,
     testthat

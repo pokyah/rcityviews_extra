@@ -14,9 +14,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .onLoad <- function(libname, pkgname) {
-
-  # define the theme registering function
-  message("Use manage_themes() to install themes")
-  
+  font_dir <- system.file("fonts", package = pkgname)  # Find the fonts directory
+  if (font_dir != "") {
+    # List all .ttf files in the font directory
+    ttf_files <- list.files(font_dir, pattern = "\\.ttf$", full.names = TRUE)
+    
+    # Loop over each .ttf file and add it as a font
+    for (ttf_file in ttf_files) {
+      font_name <- basename(tools::file_path_sans_ext(basename(ttf_file)))  # Get font name from file name without extension
+      sysfonts::font_add(family = font_name, regular = ttf_file)
+    }
+    
+    showtext::showtext_auto()  # Enable showtext for font rendering in plots
+  }
 }
+
 
