@@ -70,7 +70,7 @@ manage_themes <- function(remove = FALSE) {
   }
   
   # Apply the manage function to each theme in .themes and suppress output
-  invisible(lapply(.themes, manage))
+  invisible(lapply(themes, manage))
   
   # Optional: Final confirmation message
   message("Theme management completed.")
