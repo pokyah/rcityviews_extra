@@ -1,17 +1,3 @@
-# Load required libraries
-library(jsonlite)
-
-# Load theme configuration when the package loads
-.onLoad <- function(libname, pkgname) {
-  theme_file <- system.file("themes.json", package = pkgname)
-  if (file.exists(theme_file)) {
-    theme_data <<- fromJSON(theme_file)
-    .themes <<- names(theme_data$themes)  # Initialize .themes with the names of themes
-  } else {
-    stop("Theme configuration file not found.")
-  }
-}
-
 #' Get Theme Options
 #'
 #' Retrieves options for a specified map theme, including color, font, and size settings.
@@ -31,6 +17,7 @@ library(jsonlite)
       size = theme_data$default_size
     )
   } else {
+    
     theme_settings <- list(
       colors = theme_info$colors,
       font = theme_info$font %||% theme_data$default_font,

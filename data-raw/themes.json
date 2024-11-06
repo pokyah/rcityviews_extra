@@ -34,7 +34,7 @@
         "rails": ["#8A2BE2", "#9932CC"],
         "buildings": ["#FF6347", "#FF69B4", "#FFA500"],
         "text": "#000000",
-        "waterlines": "#00CED1"
+        "waterlines": "#00CED2"
       },
       "font": {
         "family": "PermanentMarker-Regular",
