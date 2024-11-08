@@ -2,7 +2,7 @@
   "default_font": {
     "family": "Arial",
     "face": "plain",
-    "scale": 1
+    "scale": 5
   },
   "default_size": {
     "borders": {
@@ -39,7 +39,7 @@
       "font": {
         "family": "PermanentMarker-Regular",
         "face": "plain",
-        "scale": 1
+        "scale": 5
       }
     },
     "prettymaps.default": {
