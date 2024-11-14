@@ -263,6 +263,24 @@
             "scale": 1
         }
     },
+    "pokyah.skysun": {
+      "colors": {
+        "background": "#fffff2",
+        "water": "#2730b1",
+        "landuse": ["#fffff2", "#fffff2", "#fffff2"],
+        "contours": "#fffff2",
+        "streets": "#2730b1",
+        "rails": ["#2730b1", "fffff2"],
+        "buildings": ["#ed86ac"],
+        "text": "#2730b1",
+        "waterlines": "#2730b1"
+      },
+      "font": {
+        "family": "Ubuntu",
+        "face": "plain",
+        "scale": 1
+      }
+    },
     "pokyah.church": {
       "colors": {
         "background": "#FFD700",

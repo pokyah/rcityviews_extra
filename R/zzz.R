@@ -24,6 +24,7 @@
   sysfonts::font_add_google("Fredericka the Great")
   sysfonts::font_add_google("Dancing Script")
   sysfonts::font_add_google("Walter Turncoat")
+  sysfonts::font_add_google("Ubuntu")
 
   if (font_dir != "") {
     # List all .ttf files in the font directory
