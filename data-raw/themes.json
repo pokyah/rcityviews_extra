@@ -270,7 +270,7 @@
         "landuse": ["#2730b1"],
         "contours": "#fffff2",
         "streets": "#fffff2",
-        "rails": ["#2730b1", "#f087ae"],
+        "rails": ["#2730b1", "#fffff2"],
         "buildings": ["#f087ae"],
         "text": "#f087ae",
         "waterlines": "#f087ae"
