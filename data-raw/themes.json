@@ -265,14 +265,14 @@
     },
     "pokyah.skysun": {
       "colors": {
-        "background": "#fffff2",
+        "background": "#2730b1",
         "water": "#2730b1",
-        "landuse": ["#fffff2", "#fffff2", "#fffff2"],
-        "contours": "#fffff2",
-        "streets": "#2730b1",
+        "landuse": ["#2730b1", "#2730b1", "#2730b1"],
+        "contours": "#2730b1",
+        "streets": "#fffff2",
         "rails": ["#2730b1", "#fffff2"],
-        "buildings": ["#ed86ac"],
-        "text": "#2730b1",
+        "buildings": ["#2730b1"],
+        "text": "#fffff2",
         "waterlines": "#2730b1"
       },
       "font": {
